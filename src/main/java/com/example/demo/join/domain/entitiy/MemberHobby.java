@@ -1,4 +1,4 @@
-package com.example.demo.join;
+package com.example.demo.join.domain.entitiy;
 
 import com.example.demo.hobby.domain.entity.Hobby;
 import com.example.demo.member.domain.entity.Member;

@@ -1,7 +1,6 @@
 package com.example.demo.member.controller;
 
 import com.example.demo.member.domain.MemberResponse;
-import com.example.demo.member.domain.entity.Member;
 import com.example.demo.member.domain.request.MemberRequest;
 import com.example.demo.member.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +16,10 @@ public class MemberController {
     private final MemberService memberService;
 
     @GetMapping
-    public List<MemberResponse> searchMember(@RequestParam(value = "name", required = false) String name) {
-        return memberService.searchMember(name);
+    public List<MemberResponse> searchMember(
+            @RequestParam(value = "name", required = false, defaultValue = "") String name,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
+        return memberService.searchMember(name, page);
     }
 
     @GetMapping("/{id}")
@@ -27,8 +28,8 @@ public class MemberController {
     }
 
     @PostMapping
-    public void save(@RequestBody MemberRequest memberRequest){
-        memberService.save(memberRequest);
+    public void insert(@RequestBody MemberRequest memberRequest){
+        memberService.insert(memberRequest);
     }
 
     @PutMapping("{id}")

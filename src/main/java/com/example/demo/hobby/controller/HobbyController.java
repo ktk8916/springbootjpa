@@ -16,8 +16,10 @@ public class HobbyController {
     private final HobbyService hobbyService;
 
     @GetMapping
-    public List<HobbyResponse> searchHobby(@RequestParam(value = "name", required = false) String name){
-        return hobbyService.searchHobby(name);
+    public List<HobbyResponse> searchHobby(
+            @RequestParam(value = "name", required = false, defaultValue = "") String name,
+            @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
+        return hobbyService.searchHobby(name, page);
     }
 
     @GetMapping("/{id}")

@@ -1,6 +1,6 @@
 package com.example.demo.hobby.domain.entity;
 
-import com.example.demo.join.MemberHobby;
+import com.example.demo.join.domain.entitiy.MemberHobby;
 import jakarta.persistence.*;
 import lombok.*;
 

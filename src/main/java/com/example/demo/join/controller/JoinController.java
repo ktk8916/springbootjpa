@@ -1,5 +1,7 @@
-package com.example.demo.join;
+package com.example.demo.join.controller;
 
+import com.example.demo.join.domain.request.JoinRequest;
+import com.example.demo.join.service.JoinService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

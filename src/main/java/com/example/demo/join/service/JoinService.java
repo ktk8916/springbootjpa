@@ -1,10 +1,8 @@
-package com.example.demo.join;
+package com.example.demo.join.service;
 
-import com.example.demo.hobby.domain.entity.Hobby;
-import com.example.demo.hobby.service.HobbyService;
-import com.example.demo.member.domain.entity.Member;
-import com.example.demo.member.service.MemberService;
-import jakarta.persistence.EntityManager;
+import com.example.demo.join.domain.request.JoinRequest;
+import com.example.demo.join.domain.entitiy.MemberHobby;
+import com.example.demo.join.repository.JoinRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +12,12 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class JoinService {
 
-    private final EntityManager em;
+    private final JoinRepository joinRepository;
 
     public void joinMemberHobby(JoinRequest joinRequest) {
         MemberHobby join = MemberHobby.createJoin(
                 joinRequest.memberId(),
                 joinRequest.hobbyId());
-        em.persist(join);
+        joinRepository.save(join);
     }
 }
