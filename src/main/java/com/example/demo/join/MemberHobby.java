@@ -3,17 +3,14 @@ package com.example.demo.join;
 import com.example.demo.hobby.domain.entity.Hobby;
 import com.example.demo.member.domain.entity.Member;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
-public class Connect {
+public class MemberHobby {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,12 +23,14 @@ public class Connect {
     @JoinColumn(name = "hobby_id")
     private Hobby hobby;
 
-    public static Connect createConnect(Member member, Hobby hobby){
-        Connect connect = new Connect();
-        connect.member = member;
-        connect.hobby = hobby;
-        member.getConnects().add(connect);
-        hobby.getConnects().add(connect);
-        return connect;
+    public static MemberHobby createJoin(Long memberId, Long hobbyId){
+        MemberHobby memberHobby = new MemberHobby();
+        memberHobby.member = Member.builder()
+                .id(memberId)
+                .build();
+        memberHobby.hobby = Hobby.builder()
+                .id(hobbyId)
+                .build();
+        return memberHobby;
     }
 }

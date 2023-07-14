@@ -1,7 +1,6 @@
 package com.example.demo.hobby.repository;
 
 import com.example.demo.hobby.domain.entity.Hobby;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

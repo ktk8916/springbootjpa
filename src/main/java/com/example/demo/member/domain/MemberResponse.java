@@ -1,7 +1,7 @@
 package com.example.demo.member.domain;
 
 import com.example.demo.hobby.domain.entity.Hobby;
-import com.example.demo.join.Connect;
+import com.example.demo.join.MemberHobby;
 import com.example.demo.member.domain.entity.Member;
 
 import java.util.List;
@@ -13,9 +13,9 @@ public record MemberResponse(Long id, String name, Integer age, List<HobbyDto> h
                 member.getId(),
                 member.getName(),
                 member.getAge(),
-                member.getConnects()
+                member.getMemberHobbies()
                         .stream()
-                        .map(Connect::getHobby)
+                        .map(MemberHobby::getHobby)
                         .map(HobbyDto::from)
                         .collect(Collectors.toList()));
     }

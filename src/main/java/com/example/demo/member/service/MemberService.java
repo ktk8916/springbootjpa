@@ -21,7 +21,7 @@ public class MemberService {
     private final EntityManager em;
 
     public List<MemberResponse> findByLikeName(String name){
-        return em.createQuery("select m from Member m join fetch m.connects c join fetch c.hobby where m.name like :name", Member.class)
+        return em.createQuery("select m from Member m join fetch m.memberHobbies mh join fetch mh.hobby where m.name like :name", Member.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultStream()
                 .map(MemberResponse::from)
@@ -52,7 +52,7 @@ public class MemberService {
     }
 
     public List<MemberResponse> findAll() {
-        return em.createQuery("select m from Member m join fetch m.connects c join fetch c.hobby", Member.class)
+        return em.createQuery("select m from Member m join fetch m.memberHobbies mh join fetch mh.hobby", Member.class)
                 .getResultStream()
                 .map(MemberResponse::from)
                 .collect(Collectors.toList());

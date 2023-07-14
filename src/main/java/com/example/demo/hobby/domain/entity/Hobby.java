@@ -1,11 +1,8 @@
 package com.example.demo.hobby.domain.entity;
 
-import com.example.demo.join.Connect;
+import com.example.demo.join.MemberHobby;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +10,7 @@ import java.util.List;
 @Entity
 @Getter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Builder
 public class Hobby {
 
@@ -21,5 +18,5 @@ public class Hobby {
     private Long id;
     private String name;
     @OneToMany(mappedBy = "hobby")
-    private List<Connect> connects = new ArrayList<>();
+    private List<MemberHobby> memberHobbies = new ArrayList<>();
 }

@@ -16,7 +16,7 @@ public class HobbyEmRepository implements HobbyRepository{
     @Override
     public List<Hobby> findAll() {
         return em
-                .createQuery("select h from Hobby h join fetch h.connects c join fetch c.member", Hobby.class)
+                .createQuery("select h from Hobby h join fetch h.memberHobbies mh join fetch mh.member", Hobby.class)
                 .getResultList();
     }
 
@@ -28,7 +28,7 @@ public class HobbyEmRepository implements HobbyRepository{
     @Override
     public List<Hobby> findByLikeName(String name) {
         return em
-                .createQuery("select h from Hobby h join fetch h.connects c join fetch c.member where h.name like :name", Hobby.class)
+                .createQuery("select h from Hobby h join fetch h.memberHobbies mh join fetch mh.member where h.name like :name", Hobby.class)
                 .setParameter("name", "%" + name + "%")
                 .getResultList();
     }

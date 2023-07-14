@@ -12,17 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ConnectService {
+public class JoinService {
 
     private final EntityManager em;
-    private final MemberService memberService;
-    private final HobbyService hobbyService;
 
-    public void connectMemberHobby(ConnectRequest connectRequest) {
-        Member member = memberService.findById(connectRequest.memberId());
-        Hobby hobby = hobbyService.findById(connectRequest.hobbyId());
-
-        Connect connect = Connect.createConnect(member, hobby);
-        em.persist(connect);
+    public void joinMemberHobby(JoinRequest joinRequest) {
+        MemberHobby join = MemberHobby.createJoin(
+                joinRequest.memberId(),
+                joinRequest.hobbyId());
+        em.persist(join);
     }
 }

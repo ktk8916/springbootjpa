@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/connect")
-public class ConnectController {
+@RequestMapping("/api/v1/join")
+public class JoinController {
 
-    private final ConnectService connectService;
+    private final JoinService joinService;
 
     @PostMapping
-    public void connectMemberHobby(@RequestBody ConnectRequest connectRequest){
-        connectService.connectMemberHobby(connectRequest);
+    public void joinMemberHobby(@RequestBody JoinRequest joinRequest){
+        joinService.joinMemberHobby(joinRequest);
     }
 }
